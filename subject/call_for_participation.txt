@@ -1,0 +1,123 @@
+VSTTE Competition 2013
+19-21 April 2013
+Organizers: Joseph Kiniry, Hannes Mehnert, Radu Grigore
+
+This edition of the VSTTE programming contest is an experiment of a
+different kind, as it is more about software engineering than
+programming. It is not a contest to see who can write and verify
+small problems as quickly as possible, but instead how can a team
+create a quality piece of code, using any tools and techniques (not
+just verification), in a short period of time.
+
+Quality software is about more than just verified data types and
+algorithms at the source code level. Unlike previous
+competitions [1], this year's VSComp will focus on a rigorously
+engineered software system. Contestants will be evaluated for all of
+the software engineering artifacts that they produce, not just for
+verifying their implementations.
+
+Consequently, teams that competed in previous competitions are
+encouraged to recruit new team members whose skills complement those
+of the existing team members. For example, perhaps the current team
+is great at low-level design and verification, but is weak in writing
+requirements or in rigorous validation/testing.
+
+The aims of the competition are:
+
+- to bring together those interested in rigorous software engineering
+and formal verification, and to provide an engaging, hands-on, and
+fun opportunity for competition and mutual-learning,
+- to evaluate the usability of a variety of software engineering
+tools, not the least of which are logic-based program verification
+tools, in a controlled experiment that could be easily repeated by
+others.
+
+The contest takes place over a three day period. The system that
+contestants must develop is secret until the moment the contest
+starts. The system will be decomposed for the contestants into
+an architecture, whose constituent pieces are the sub-problems of the
+contest. Thus, by solving all sub-problems, one writes the entire
+application. What's more, the architecture is specified in such a
+way that independent solutions to sub-problems submitted by competing
+teams should compose into the final system.
+
+The kinds of software engineering concepts mentioned in the contest
+include: requirements, domain analysis, design, architecture, formal
+specifications, implementation, validation, verification, and
+traceablity. A well-prepared team will have a methodology prepared
+for each of these facets. The submission of a solution for a
+sub-problem need not include any of these facets in particular---i.e.,
+running, verified code is neither necessary nor sufficient to win the
+contest.
+
+There are no restrictions on concepts, tools, and technologies used.
+Teams whose focus in on "early" (i.e., requirements or domain
+analysis) or "late" (validation/testing or evolution) phases of the
+software engineering process are very welcome. Teams must be of six
+contestants or less.
+
+We particularly encourage participation of:
+- student teams (this includes PhD students),
+- non-developer teams using a tool someone else developed, and
+- several teams using the same tool
+
+A panel of judges will evaluate contest entries to score sub-problems
+and determine the winner. Solutions will be judged for correctness,
+completeness and elegance. All submitted artifacts will be made
+public immediately after the contest ends so that contestants can
+comment upon each other's submissions. We expect that a paper will be
+co-authored by all interested contestants about the contest's results,
+as in several previous contests.
+
+The contest begins at 9:00 GMT on 19 April and ends at 23:39 on 21
+April.
+
+Prizes will be awarded in the following categories:
+- best team
+- best student team
+- tool used most effectively by the most teams
+
+Questions or comments about the contest should be sent to Joe Kiniry
+(kiniry AT acm.org).
+
+---
+
+[1] Past VSComp Competitions Summary
+
+The first edition of the competition was a half-day live contest that
+took place at VSTTE in August 2010 and was organized by Shankar and
+Peter. Small teams focused on simple algorithms specified via natural
+language and pseudo-code. The algorithms were sum & max, inverting an
+injection, searching a linked list, the N-Queens problem, and an
+amortized queue.
+
+http://www.macs.hw.ac.uk/vstte10/Competition.html
+
+
+The 2011 competition was organized by Marieke, Vladimir, and Rosemary.
+It was a live competition that took place over a half day in October
+2011 at FoVeOSS 2011. Small teams focused on simple algorithms
+specified using Java code. The algorithms were max of an array, max
+of a tree, finding two duplets in an array, and deciding on the
+cyclicity of a list.
+
+http://foveoos2011.cost-ic0701.org/verification-competition
+
+
+The 2012 VSTTE competition was organized by Jean-Christophe, Andei,
+and Aaron and was an online competition that took place over a 48 hour
+period in November 2011. It focused on somewhat more advanced
+algorithms than earlier competitions including two-way sort, an S & K
+combinator interpreter, a queue implemented with a ring buffer, tree
+reconstruction, and breadth-first search.
+
+https://sites.google.com/site/vstte2012/compet
+
+
+The VerifyThis competition was a two day affair that took place at FM
+2012. It was organized by Marieke, Vladimir, and Rosemary. Teams of
+up to two people focused on three problems: longest common prefix of
+two arrays, prefix sum of an array, and iterative deletion in a binary
+search tree.
+
+http://fm2012.verifythis.org/
