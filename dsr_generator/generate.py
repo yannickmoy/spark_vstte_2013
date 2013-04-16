@@ -2,6 +2,7 @@
 
 import os
 import sys
+import re
 
 import csv
 
@@ -11,6 +12,8 @@ FORMAT_REQ = {
     "Requirement ID": {"type": "id"},
     "Requirement Description": {"name": "text",
                                 "type": "latex"},
+    "Satisfaction Argument": {"name": "argument",
+                              "type": "latex"},
     "Satisfied by": {"name": "satisfied",
                      "type": "tags"},
     }
@@ -27,6 +30,12 @@ FORMAT_SPEC = {
                                             "type": "latex"},
     "In the context of": {"name": "context",
                           "type": "tags"},
+    }
+
+FORMAT_DATA = {
+    "Term": {"type": "id"},
+    "Definition": {"name": "definition",
+                   "type": "latex"},
     }
 
 def read_input(filename, format):
@@ -79,8 +88,20 @@ def read_input(filename, format):
     fd.close()
     return rv
 
+
 def mk_link(tag):
     return "\hyperref[%s]{%s}" % (tag, tag)
+
+def link_to_dictionary(s, dictionary):
+    rv = s
+
+    for item in dictionary:
+        tmp = re.compile(r"\b" + item + r"\b",
+                         re.IGNORECASE)
+        rv = tmp.sub(r"\hyperref[term:%s]{%s}" % (item, item),
+                     rv)
+
+    return rv
 
 def produce_latex():
     fd = open("dsr.tex", "w")
@@ -88,6 +109,7 @@ def produce_latex():
     requirements  = read_input("requirements.csv",  FORMAT_REQ)
     domain        = read_input("domain.csv",        FORMAT_DOM)
     specification = read_input("specification.csv", FORMAT_SPEC)
+    dictionary    = read_input("dictionary.csv",    FORMAT_DATA)
 
     # We have three mostly identical copies of this because we
     # probably will want to do some individual output, such as linking
@@ -100,11 +122,25 @@ def produce_latex():
 
         fd.write("\\subsection{%s}\n" % tag)
         fd.write("\\label{%s}\n" % tag)
-        fd.write(req["text"] + "\n")
+        fd.write(link_to_dictionary(req["text"],
+                                    dictionary) + "\n")
         fd.write("\n")
 
-        fd.write("\\paragraph{Is satisfied by}\n")
-        fd.write(", ".join(map(mk_link, req["satisfied"])))
+        fd.write("\\paragraph{Satisfaction argument}\n")
+        fd.write(link_to_dictionary(req["argument"],
+                                    dictionary) + "\n")
+
+        fd.write("\\paragraph{Satisfied by}\n")
+        fd.write("\\begin{itemize}\n")
+        for s_tag in req["satisfied"]:
+            fd.write("  \\item %s" % mk_link(s_tag))
+            if len(specification[s_tag]["context"]) > 0:
+                fd.write(" (")
+                fd.write(", ".join(map(mk_link,
+                                       specification[s_tag]["context"])))
+                fd.write(")")
+            fd.write("\n")
+        fd.write("\\end{itemize}\n")
 
 
     # fd.write("\\clearpage\n")
@@ -115,7 +151,8 @@ def produce_latex():
 
         fd.write("\\subsection{%s}\n" % tag)
         fd.write("\\label{%s}\n" % tag)
-        fd.write(dom["text"] + "\n")
+        fd.write(link_to_dictionary(dom["text"],
+                                    dictionary) + "\n")
         fd.write("\n")
 
 
@@ -127,38 +164,26 @@ def produce_latex():
 
         fd.write("\\subsection{%s}\n" % tag)
         fd.write("\\label{%s}\n" % tag)
-        fd.write(spec["text"] + "\n")
+        fd.write(link_to_dictionary(spec["text"],
+                                    dictionary) + "\n")
         fd.write("\n")
 
         fd.write("\\paragraph{In the context of}\n")
         fd.write(", ".join(map(mk_link, spec["context"])))
 
+    fd.close()
 
-    fd.write("\\section{Requirement Satisfaction}\n")
 
-    fd.write("\\begin{longtable}{p{2.25cm} >{\\raggedright\\arraybackslash}p{8.5cm}}\n")
-    fd.write("\\hline\n")
+    fd = open("dictionary.tex", "w")
 
-    fd.write(r"Requirement & Satisfied by\\" + "\n")
-    fd.write("\\hline\n")
+    fd.write("\\section{Terms}\n")
 
-    for r_tag in sorted(requirements):
-        fd.write(r"%s &" % r_tag)
-        spec_tmp = []
-        for s_tag in sorted(requirements[r_tag]["satisfied"]):
-            dom_tmp = []
-            for d_tag in sorted(specification[s_tag]["context"]):
-                dom_tmp.append("%s" % mk_link(d_tag))
-            if len(dom_tmp) > 0:
-                spec_tmp.append("%s (%s)" % (mk_link(s_tag),
-                                             ", ".join(dom_tmp)))
-            else:
-                spec_tmp.append("%s" % (mk_link(s_tag)))
-        fd.write(r"%s \\" % ", ".join(spec_tmp))
-        fd.write("\n")
+    for term in sorted(dictionary):
+        data = dictionary[term]
 
-    fd.write("\\hline\n")
-    fd.write("\\end{longtable}\n")
+        fd.write("\\subsection{%s}\n" % term.capitalize())
+        fd.write("\\label{term:%s}\n" % term.lower())
+        fd.write(data["definition"] + "\n\n")
 
     fd.close()
 
