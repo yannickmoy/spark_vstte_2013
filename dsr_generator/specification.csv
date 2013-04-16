@@ -1,3 +1,4 @@
 "Spec ID","Specification Statement Description","In the context of"
-"S1","We do some stuff.","D1, D2"
-"S2","We could even use \LaTeX\ in here: $a \cup b$","D2, D3"
+"S.beans","We will grow some beans.","D.garden, D.seeds"
+"S.bread","We will buy some bread.","D.shop, D.money"
+"S.shop","We go to a shop.","D.shop, D.nearshop"

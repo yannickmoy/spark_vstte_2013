@@ -79,6 +79,9 @@ def read_input(filename, format):
     fd.close()
     return rv
 
+def mk_link(tag):
+    return "\hyperref[%s]{%s}" % (tag, tag)
+
 def produce_latex():
     fd = open("dsr.tex", "w")
 
@@ -101,8 +104,7 @@ def produce_latex():
         fd.write("\n")
 
         fd.write("\\paragraph{Is satisfied by}\n")
-        fd.write(", ".join(map(lambda x: "\hyperref[%s]{%s}" % (x, x),
-                               req["satisfied"])))
+        fd.write(", ".join(map(mk_link, req["satisfied"])))
 
 
     # fd.write("\\clearpage\n")
@@ -129,9 +131,34 @@ def produce_latex():
         fd.write("\n")
 
         fd.write("\\paragraph{In the context of}\n")
-        fd.write(", ".join(map(lambda x: "\hyperref[%s]{%s}" % (x, x),
-                               spec["context"])))
+        fd.write(", ".join(map(mk_link, spec["context"])))
 
+
+    fd.write("\\section{Requirement Satisfaction}\n")
+
+    fd.write("\\begin{longtable}{p{2.25cm} >{\\raggedright\\arraybackslash}p{8.5cm}}\n")
+    fd.write("\\hline\n")
+
+    fd.write(r"Requirement & Satisfied by\\" + "\n")
+    fd.write("\\hline\n")
+
+    for r_tag in sorted(requirements):
+        fd.write(r"%s &" % r_tag)
+        spec_tmp = []
+        for s_tag in sorted(requirements[r_tag]["satisfied"]):
+            dom_tmp = []
+            for d_tag in sorted(specification[s_tag]["context"]):
+                dom_tmp.append("%s" % mk_link(d_tag))
+            if len(dom_tmp) > 0:
+                spec_tmp.append("%s (%s)" % (mk_link(s_tag),
+                                             ", ".join(dom_tmp)))
+            else:
+                spec_tmp.append("%s" % (mk_link(s_tag)))
+        fd.write(r"%s \\" % ", ".join(spec_tmp))
+        fd.write("\n")
+
+    fd.write("\\hline\n")
+    fd.write("\\end{longtable}\n")
 
     fd.close()
 

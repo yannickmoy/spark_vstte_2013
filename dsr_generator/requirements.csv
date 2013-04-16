@@ -1,3 +1,3 @@
 "Requirement ID","Requirement Description","Satisfied by"
-"R1","Requirements Description 1 That's about it for basic tables in my opinion. After you experiment, you do quickly get up to scratch. I must admit, the table syntax in Latex can look rather messy, and so seeing new examples","S1"
-"R2","Wibble","S2"
+"R.beans","There shall be beans!","S.beans"
+"R.bread","There shall be bread!","S.bread, S.shop"
