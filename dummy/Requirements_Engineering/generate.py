@@ -172,8 +172,9 @@ def produce_latex():
                                     dictionary) + "\n")
         fd.write("\n")
 
-        fd.write("\\paragraph{In the context of}\n")
-        fd.write(", ".join(map(mk_link, spec["context"])))
+        if len(spec["context"]) > 0:
+            fd.write("\\paragraph{In the context of}\n")
+            fd.write(", ".join(map(mk_link, spec["context"])))
 
     fd.close()
 
