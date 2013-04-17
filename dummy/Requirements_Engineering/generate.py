@@ -75,8 +75,12 @@ def read_input(filename, format):
                 elif fmt["type"] == "latex":
                     the_data[fmt["name"]] = txt
                 elif fmt["type"] == "tags":
-                    the_data[fmt["name"]] = map(lambda x: x.strip(),
-                                                txt.split(", "))
+                    the_data[fmt["name"]] = \
+                        [t
+                         for t in map(lambda x: x.strip(),
+                                      txt.split(", "))
+                         if len(t) >= 1]
+
 
             if the_id in rv:
                 print "error: %s: duplicate entry `%s'" % (filename,
@@ -98,7 +102,7 @@ def link_to_dictionary(s, dictionary):
     for item in dictionary:
         tmp = re.compile(r"\b" + item + r"\b",
                          re.IGNORECASE)
-        rv = tmp.sub(r"\hyperref[term:%s]{%s}" % (item, item),
+        rv = tmp.sub(r"\hyperref[term:%s]{%s}" % (item.lower(), item),
                      rv)
 
     return rv
