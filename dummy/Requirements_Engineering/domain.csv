@@ -1,0 +1,4 @@
+Domain ID,Domain Statement Description
+D.time,"A duration measured in Hours, Minutes and Seconds."
+D.time.period,"The measurement accuracy of the stopwatch, assumed to be 1 second."
+D.accuracy,The accuracy of the stopwatch shall be sufficient to satisfy international racing authorities.

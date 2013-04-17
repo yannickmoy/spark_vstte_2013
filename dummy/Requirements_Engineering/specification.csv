@@ -1,0 +1,6 @@
+Spec ID,Specification Statement Description,In the context of
+S.start,There shall be an operation to start the watch counting time.,
+S.stop,There shall be an operation to stop the watch counting time.,
+S.count,"If the Start operation has been activated, and the Stop operation has not been activated, then the count of time shall be incremented every time period.","D.time, D.time.period, D.accuracy"
+S.reset,There shall be an operation to reset the time currently stored within the stopwatch.,
+S.display,There shall be an operation to display the current time stored within the stopwatch application.,"D.time, D.accuracy"

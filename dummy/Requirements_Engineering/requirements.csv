@@ -1,0 +1,6 @@
+Requirement ID,Requirement Description,Satisfaction Argument,Satisfied by
+R.measurement,There is a need to measure lapsed time between two events.,"Starting, stoping and counting the time between these events allows us to measure the passage of time.","S.start , S.count,  S.stop"
+R.usability,It should be easy to operate the Stopwatch.,Separate operations make it ease to operate the watch.,"S.start , S.stop, S.reset"
+R.display,The display of time should be easily read.,An operation exists to clearly display the transition of time.,S.display
+R.reset,It should be possible to reset the watch to measure other events.,A separate operation exists to reset the watches value.,S.reset
+R.lapse,It should be possible to display the time lapsed since time recording began.,"The time operation displays the currently held value of time, even if the counter is progressing.",S.display
