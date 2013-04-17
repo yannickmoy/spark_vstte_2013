@@ -38,8 +38,8 @@ package Time is
        X.Seconds = Seconds_T'Last
         and then X.Minutes = Minutes_T'Last
        =>
-        Increment'Result.Seconds = X.Seconds
-         and then Increment'Result.Minutes = X.Minutes
+        Increment'Result.Seconds = 0
+         and then Increment'Result.Minutes = 0
          and then Increment'Result.Hours = X.Hours + 1);
    --  Provides part of S.count
 
