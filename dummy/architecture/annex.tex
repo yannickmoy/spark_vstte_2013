@@ -1,0 +1,98 @@
+\subsection{\informed\ Main Program}
+
+This section show you how an \informed\ Main Program is represented pictorially on an architecture
+diagram, and as a SPARK package.
+
+\begin{figure}[h]
+  \begin{center}
+    \begin{tikzpicture}[x=2cm,y=2cm,shorten >=2pt, shorten <=2pt]
+      \node[main] (main) at (0, 0) {main};
+    \end{tikzpicture}
+  \end{center}
+  \caption{\informed\ Main Image Drawing Element}
+\end{figure}
+
+\subsection{\informed\ Variable Packages}
+
+This section show you how an \informed\ Variable Package is represented pictorially on an architecture
+diagram, and as a SPARK package.
+
+\begin{figure}[h]
+  \begin{center}
+    \begin{tikzpicture}[x=2cm,y=2cm,shorten >=2pt, shorten <=2pt]
+      \node[var] (variable_package)                  at (0, 0) {Variable};
+    \end{tikzpicture}
+  \end{center}
+  \caption{\informed\ Variable Package Drawing Element}
+\end{figure}
+
+
+\begin{lstlisting} [label=some-code,caption=Some Code]
+
+with Time;
+
+package Clock
+  with Abstract_State => State
+is
+
+  procedure Initialise_To_Zero
+    with Global => (Output => State);
+  --  S.reset
+
+  procedure Increment
+    with Global => (In_Out => State);
+  --  S.count
+
+  function Get_Current_Time return Time.T
+    with Global => (Input => State);
+  --  S.display
+
+end Clock;
+\end{lstlisting}
+
+
+\subsection{\informed\ Type Packages}
+
+This section show you how an \informed\ Type Package is represented pictorially on an architecture
+diagram, and as a SPARK package.
+
+\begin{figure}[h]
+  \begin{center}
+    \begin{tikzpicture}[x=2cm,y=2cm,shorten >=2pt, shorten <=2pt]
+      \node[type]     (type_package)                 at ( 0, 0) {Type};
+    \end{tikzpicture}
+  \end{center}
+  \caption{\informed\ Type Package Drawing Element}
+\end{figure}
+
+
+subsection{\informed\ Utility Packages}
+
+This section show you how an \informed\ Utility Package is represented pictorially on an architecture
+diagram, and as a SPARK package.
+
+ \begin{figure}[h]
+  \begin{center}
+    \begin{tikzpicture}[x=2cm,y=2cm,shorten >=2pt, shorten <=2pt]
+      \node[utility] (utility) at (0, 0) {Utility};
+    \end{tikzpicture}
+  \end{center}
+  \caption{\informed\ diagram of our Stopwatch}
+\end{figure}
+
+
+\subsection{\informed\ Boundary Variable Packages}
+
+This section show you how an \informed\ Boundary Variable Package is represented pictorially on an architecture
+diagram, and as a SPARK package.
+
+\begin{figure}[h]
+  \begin{center}
+    \begin{tikzpicture}[x=2cm,y=2cm,shorten >=2pt, shorten <=2pt]
+      \node[boundary] (boundary_package)       at (0, 0) {Boundary};
+    \end{tikzpicture}
+  \end{center}
+  \caption{\informed\ diagram of our Stopwatch}
+\end{figure}
+
+\subsection{\informed\ Connectors}

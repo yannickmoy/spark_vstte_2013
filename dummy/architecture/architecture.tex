@@ -73,9 +73,18 @@
 \tikzstyle{strong}=[-triangle 90]
 \tikzstyle{weak}=[-open triangle 90]
 
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                    {3.25ex \@plus1ex \@minus.2ex}%
+                                    {-1em}%
+                                    {\normalfont\normalsize\itshape}}
+\makeatother
 
 
 \begin{document}
+
+\section{Introduction}
+\input{introduction.tex}
 
 \section{Diagram}
 
@@ -121,5 +130,10 @@
 
 \subsection{Main}
 \lstinputlisting{spark/main.adb}
+
+\appendix
+\section{\informed\ Element Definitions}
+
+\input{annex.tex}
 
 \end{document}

@@ -1,0 +1,50 @@
+\label{Introduction}
+\informed\ is the Altran method for the construction of high-quality
+software at a low-cost, it uses elements of both object oriented (OOD) and functional
+ design. OOD is used to establish the architecture of the system and the
+ elements of system state it contains. The result is an annotated framework
+ of SPARK packages, constructing an architecture that is modifiable and
+ maintainable, which is capable of being analysed at an early stage using the Examiner.
+
+Altrans' analysis of many software designs has identified that there are 3 key building
+ blocks that are used repeatedly to build an application. These building blocks are:
+   \begin{itemize}
+  \item A Main Program, that is the top level, entry point controlling the behaviour
+   a system or sub-system.
+  \item Variable Packages, which are SPARK packages containing persistent "state",
+   and are equivalent to what is commonly called an object.
+  \item Type Packages, which define the name of a type, and the operations taht
+  it supports.
+  \end{itemize}
+
+In addition to these packages, \informed\ also includes two other types of packages:
+   \begin{itemize}
+  \item Utility Packages, which provide shared functionality. The need for utility packages
+  arises when an operation is required which affects or uses more than one variable of type
+  package.
+  \item Boundary Variable Packages, which are particular kinds of variable package which
+  provides interfaces between the software functionality described by the \informed\ design
+  and elements outside it with which it must communicate. Unlike other variable packages the
+  variable within the package is a place holder representing the stream of data arriving from,
+  or being sent to, the outside world rather than simply an abstract name for the internal state
+  of the package.
+  \end{itemize}
+
+The \informed\ method consists of 6 steps, and these are:
+   \begin{enumerate}
+  \item Identification of the System boundary, inputs and outputs.
+  \item Identification of the SPARK boundary.
+  \item Identification and localization of the system state.
+  \item Handling initalization of state.
+  \item Handling secondary requirements.
+  \item Implementing the internal behaviour of components.
+  \end{enumerate}
+
+The output of the \informed\ process is represented a collection of design diagrams and a collection
+of well defined SPARK specifications. A summary of the \informed\ graphical elements and example
+representations are documented in Annex A of this document to aid the reader in the understanding of 
+the architectural design.
+
+As the VSTTE 2013 competition has a very short timescale, it is not expected that there is enough
+time to fully apply the \informed\ process, however the benefits of the benifits of the modelling
+approach and the translation in SPARK Package Specifications can be shown in this project.
