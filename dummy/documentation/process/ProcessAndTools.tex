@@ -1,0 +1,38 @@
+\documentclass{report}
+
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolour}
+\usepackage{pdfpages}
+
+\newcommand{\reveal}[0]{{\sc reveal}\texttrademark}
+\newcommand{\informed}[0]{{\sc informed}}
+\newcommand{\tbc}[0]{\textcolor{red}{\sc tbc}}
+\newcommand{\altran}[0]{\textcolor{blue}{Altran}}
+
+\begin{document}
+
+\chapter{Introduction}
+\input{introduction.tex}
+
+\chapter{Process Overview}
+\input{processSummary.tex}
+
+
+
+\section{SPARK2012 Overview}
+\input{SPARK2012Overview.tex}
+
+\chapter{Tools}
+\section{GNAT2012}
+\input{GNAT2012Overview.tex}
+
+\section{Other Tools??}
+
+\chapter{Team Members}
+\input{AlanNewton.tex}
+
+\chapter{Acknowledgements}
+\input{Acknowledgements.tex}
+\end{document}
