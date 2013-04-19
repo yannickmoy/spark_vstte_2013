@@ -4,34 +4,41 @@
 \usepackage{longtable}
 \usepackage{array}
 \usepackage{xcolor}
-\usepackage{pdfpages}
+\usepackage{rotating}
+
+%\definecolor{AltranBlue}{RGB}{48,149,180}
 
 \newcommand{\reveal}[0]{{\sc reveal}\texttrademark}
 \newcommand{\informed}[0]{{\sc informed}}
 \newcommand{\tbc}[0]{\textcolor{red}{\sc tbc}}
-\newcommand{\altran}[0]{\textcolor{blue}{Altran}}
+%\newcommand{\altran}[0]{\textcolor{AltranBlue}{Altran}}
+\newcommand{\altran}[0]{Altran}
+
+\title{VSTTE'13}
+\author{Team Name Goes Here}
 
 \begin{document}
+
+\maketitle
 
 \chapter{Introduction}
 \input{Introduction.tex}
 
 \chapter{Process Overview}
+\label{ProcessSummary}
 \input{processSummary.tex}
-
-
 
 \section{SPARK2012 Overview}
 \input{Spark2012Overview.tex}
 
-\chapter{Tools}
-\section{GNAT2012}
-\input{GNAT2012Overview.tex}
+% \chapter{Tools}
+% \section{GNAT2012}
+% \input{GNAT2012Overview.tex}
 
-\section{Other Tools??}
+% \section{Other Tools??}
 
 \chapter{Team Members}
-\input{AlanNewton.tex}
+\input{team.tex}
 
 \chapter{Acknowledgements}
 \input{Acknowledgements.tex}
