@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<messages >
+  <project>
+    <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/stopwatch.gpr</vfs_file>
+    <category name="Project" >
+      <file>
+        <vfs_name>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/stopwatch.gpr</vfs_name>
+        <message text="warning: object directory &quot;obj&quot; not found" column="9" line="1" class="GPS.KERNEL.MESSAGES.SIMPLE.SIMPLE_MESSAGE"  />
+      </file>
+    </category>
+    <category name="dynamic occurrences" >
+      <file>
+        <vfs_name>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/stopwatch.gpr</vfs_name>
+        <message text="" highlighting_length="9" highlighting_style="dynamic occurrences unknown" flags="2" column="9" line="1" class="GPS.KERNEL.MESSAGES.MARKUP.MARKUP_MESSAGE"  />
+        <message text="" highlighting_length="9" highlighting_style="dynamic occurrences unknown" flags="2" column="5" line="8" class="GPS.KERNEL.MESSAGES.MARKUP.MARKUP_MESSAGE"  />
+      </file>
+      <file>
+        <vfs_name>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/src/time.adb</vfs_name>
+        <message text="" highlighting_length="7" highlighting_style="dynamic occurrences unknown" flags="2" column="1" line="1" class="GPS.KERNEL.MESSAGES.MARKUP.MARKUP_MESSAGE"  />
+      </file>
+    </category>
+  </project>
+</messages>

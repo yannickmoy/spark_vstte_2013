@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<Locations >
+  <Project >
+    <file_marker column=" 3" line=" 22" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/src/time.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/obj/gnattest/tests/time-test_data-tests.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 28" line=" 15" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/obj/gnattest/tests/time-test_data-tests.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 14" line=" 12" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/obj/gnattest/tests/time-test_data-tests.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 14" line=" 15" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/obj/gnattest/tests/time-test_data-tests.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 14" line=" 17" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/obj/gnattest/tests/time-test_data-tests.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/src/clock.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/src/clock.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/src/controls.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/src/display.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/src/main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/src/stopwatch.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/src/stopwatch.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/src/time.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 49" line=" 27" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/src/time.ads</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 1" line=" 1" >
+      <vfs_file>/nfs/tolbiac/tolbiac.a/homes/moy/extern/spark_vstte_2013/dummy/implementation/src/time.adb</vfs_file>
+    </file_marker>
+  </Project>
+</Locations>

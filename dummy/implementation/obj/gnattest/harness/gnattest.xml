@@ -1,0 +1,44 @@
+<tests_mapping mode="monolith">
+   <unit source_file="clock.ads">
+      <test_unit target_file="clock-test_data-tests.ads">
+         <setup file="clock-test_data.adb" line="3"  column="4"/>
+         <teardown file="clock-test_data.adb" line="9"  column="4"/>
+         <tested name="Get_Current_Time" line="7" column="4">
+            <test file="clock-test_data-tests.adb" line="13" column="1" timestamp="2013-04-19 21:25:17"/>
+         </tested>
+         <tested name="Initialise_To_Zero" line="11" column="4">
+            <test file="clock-test_data-tests.adb" line="34" column="1" timestamp="2013-04-19 21:25:17"/>
+         </tested>
+         <tested name="Increment" line="16" column="4">
+            <test file="clock-test_data-tests.adb" line="55" column="1" timestamp="2013-04-19 21:25:17"/>
+         </tested>
+         <dangling>
+         </dangling>
+      </test_unit>
+   </unit>
+   <unit source_file="stopwatch.ads">
+      <test_unit target_file="stopwatch-test_data-tests.ads">
+         <setup file="stopwatch-test_data.adb" line="3"  column="4"/>
+         <teardown file="stopwatch-test_data.adb" line="9"  column="4"/>
+         <tested name="Get_State" line="10" column="4">
+            <test file="stopwatch-test_data-tests.adb" line="13" column="1" timestamp="2013-04-19 21:25:17"/>
+         </tested>
+         <tested name="Stopwatch_Logic" line="14" column="4">
+            <test file="stopwatch-test_data-tests.adb" line="34" column="1" timestamp="2013-04-19 21:25:17"/>
+         </tested>
+         <dangling>
+         </dangling>
+      </test_unit>
+   </unit>
+   <unit source_file="time.ads">
+      <test_unit target_file="time-test_data-tests.ads">
+         <setup file="time-test_data.adb" line="3"  column="4"/>
+         <teardown file="time-test_data.adb" line="9"  column="4"/>
+         <tested name="Increment" line="22" column="3">
+            <test file="time-test_data-tests.adb" line="13" column="1" timestamp="2013-04-19 21:25:17"/>
+         </tested>
+         <dangling>
+         </dangling>
+      </test_unit>
+   </unit>
+</tests_mapping>
