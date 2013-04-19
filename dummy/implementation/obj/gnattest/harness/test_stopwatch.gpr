@@ -8,7 +8,7 @@ project test_stopwatch is
 
    package Compiler is
       for Default_Switches ("ada") use
-        ("-g", "-O1", "-gnatyM0", "-gnata", "-gnat12");
+        ("-g", "-O1", "-gnatyM0", "-gnata", "-gnat12", "-gnatd.V");
    end Compiler;
 
 end test_stopwatch;
