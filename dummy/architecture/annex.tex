@@ -122,7 +122,7 @@ operations to be correctly located.
 \subsection{\informed\ Boundary Variable Packages}
 \noindent\parbox[][][t]{.2\linewidth}{
     \begin{tikzpicture}[x=2cm,y=2cm,shorten >=2pt, shorten <=2pt]
-      \node[boundary] (boundary_package)       at (0, 0) {Boundary};
+      \node[boundary,text width=1cm] at (0, 0) {Boundary};
      \end{tikzpicture}}%
  \parbox[][][t]{.8\linewidth}{
 
@@ -183,3 +183,11 @@ end Controls.Stop;
 
 \end{lstlisting}
 
+\subsection{\informed\ Connectors}
+\noindent\parbox[][][t]{.2\linewidth}{
+  \begin{tikzpicture}[x=2cm,y=2cm,shorten >=2pt, shorten <=2pt]
+    \draw[->,strong] (0, 0) -- (1, 0);
+    \draw[->,weak]   (0, 1) -- (1, 1);
+  \end{tikzpicture}}%
+\parbox[][][t]{.8\linewidth}{
+Descriptive Text}
