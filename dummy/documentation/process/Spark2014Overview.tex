@@ -1,3 +1,25 @@
-\label{SPARK2012OVERVIEW}
-\tbc
+\label{SPARK2014OVERVIEW}
 
+SPARK is one of the premier environments for industrial development of critical
+software. It consists of an Ada-based programming and specification language
+and associated verification tools that provide support for compositional,
+software-contract based specification and verification for both functional and
+information flow properties. Since its inception over 20 years ago, continuous
+research and development has enabled SPARK to establish an enviable industrial
+track-record in the development of the most safety and security-critical
+systems.
+
+Despite its significant benefits, the most widely used versions of SPARK (SPARK
+2005 and predecessors) suffer from some limitations: contracts are embedded in
+comments, the language subset supported for formal verification is limited, and
+SPARK's contract language only has a logical interpretation (not an
+accompanying executable interpretation).
+
+To overcome these limitations, the next version of SPARK to be issued in 2014
+aligns SPARK with Ada 2012, thus providing native support for contracts with
+very powerful contract expressions, whose semantics are unified between the
+logical and executable views.
+
+The GNAT compiler for Ada supports most of SPARK 2014 constructs already.
+The accompanying formal verification tool GNATprove co-developed between
+AdaCore and Altran is currently available as a prototype.
