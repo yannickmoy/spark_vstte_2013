@@ -1,26 +1,23 @@
 \subsection{\informed\ Main Program}
 
-\noindent\parbox[][][t]{.2\linewidth}{
-    \begin{tikzpicture}[x=2cm,y=2cm,shorten >=2pt, shorten <=2pt]
-      \node[main] (main) at (0, 0) {main};
-    \end{tikzpicture}}%
- \parbox[][][t]{.8\linewidth}{
-This section show you how an \informed\ Main Program is represented pictorially on an architecture
-diagram, and as a SPARK package.
+\begin{wrapfigure}{l}{1.75cm}
+  \begin{tikzpicture}
+    \node[main] at (0, 0) {main};
+  \end{tikzpicture}
+\end{wrapfigure}
+This section show you how an \informed\ Main Program is represented
+pictorially on an architecture diagram, and as a SPARK package.
 
-Typically, the SPARK implementation of an \informed\ design will have only one
-such main program (annotated with SPARK's \texttt{main\textunderscore program} annotation).
-}
+Typically, the SPARK implementation of an \informed\ design will have
+only one such main program (annotated with SPARK's
+\texttt{main\textunderscore program} annotation).
 
-\begin{lstlisting} [label=some-code,caption=An \informed\ SPARK Main program]
+\begin{lstlisting}[caption=An \informed\ SPARK Main program]
 with A, B, C, D;
 
 procedure Main
-  with Global => (Input => (I1,
-                            I2,
-                            I3),
-                  Output => (O1,
-                             O2))
+  with Global => (Input => (I1, I2, I3),
+                  Output => (O1, O2))
 is
 begin  -- Main
    Initialize;
@@ -33,22 +30,25 @@ end Main;
 
 \subsection{\informed\ Variable Packages}
 
-\noindent\parbox[][][t]{.2\linewidth}{
-    \begin{tikzpicture}[x=2cm,y=2cm,shorten >=2pt, shorten <=2pt]
-      \node[var] (variable_package)                  at (0, 0) {Variable};
-    \end{tikzpicture}}%
- \parbox[][][t]{.8\linewidth}{
+\begin{wrapfigure}{l}{1.5cm}
+    \begin{tikzpicture}
+      \node[var] at (0, 0) {Variable};
+    \end{tikzpicture}
+\end{wrapfigure}
 
-This section show you how an \informed\ Variable Package is represented pictorially on an architecture
-diagram, and as a SPARK package.}
+This section show you how an \informed\ Variable Package is
+represented pictorially on an architecture diagram, and as a SPARK
+package.
 
-Rather than provide a generic example, this section uses a Stack package to provides a concrete example of an
-\informed\ variable package. In this example we are defining a container (\texttt{Stack.State}) that can contain
-values of a certain shape ("abstract stack") upon which certain operations can be performed (\texttt{Clear},
-\texttt{Push} and \texttt{Pop}).
+Rather than provide a generic example, this section uses a Stack
+package to provides a concrete example of an \informed\ variable
+package. In this example we are defining a container
+(\texttt{Stack.State}) that can contain values of a certain shape
+("abstract stack") upon which certain operations can be performed
+(\texttt{Clear}, \texttt{Push} and \texttt{Pop}).
 
 
-\begin{lstlisting} [label=some-code,caption=An \informed\ SPARK variable package]
+\begin{lstlisting}[caption=An \informed\ SPARK variable package]
 package Stack
   with Abstract_State => State
 is
@@ -65,83 +65,86 @@ is
 end Stack;
 \end{lstlisting}
 
-
 \subsection{\informed\ Type Packages}
 
-\noindent\parbox[][][t]{.2\linewidth}{
-    \begin{tikzpicture}[x=3cm,y=3cm,shorten >=2pt, shorten <=2pt]
-      \node[type]     (type_package)                 at ( 0, 0) {Type};
-    \end{tikzpicture}}%
- \parbox[][][t]{.8\linewidth}{
+\begin{wrapfigure}{l}{1.5cm}
+  \begin{tikzpicture}
+    \node[type] at (0, 0) {Type};
+  \end{tikzpicture}
+\end{wrapfigure}
 
-This section show you how an \informed\ Type Package is represented pictorially on an architecture
-diagram, and as a SPARK package. This type of package does not have a state and therefore does not
-require a State declaration, and this is shown in the code below.
-}
+This section show you how an \informed\ Type Package is represented
+pictorially on an architecture diagram, and as a SPARK package. This
+type of package does not have a state and therefore does not require a
+State declaration, and this is shown in the code below.
 
-The stack variable package presented earlier can be restructured as a type package declaring an
-abstract type.
+The stack variable package presented earlier can be restructured as a
+type package declaring an abstract type.
 
-\begin{lstlisting} [label=some-code,caption=An \informed\ SPARK Type Package]
+\begin{lstlisting}[caption=An \informed\ SPARK Type Package]
 package Stack is
 
   type T is private;
 
-  procedure Clear;
-    with Global => (Output => State);
+  procedure Clear (S : out T);
 
-  procedure Push(X : in Integer);
-    with Global => (In_Out => State);
+  procedure Push (X : in     Integer;
+                  S : in out T);
 
-  procedure Pop(X : out Integer);
-    with Global => (In_Out => State);
+  procedure Pop (X : out    Integer;
+                 S : in out T);
 
-  private
-    --#hide stack;
-    -- full declaration of type T would go here
+private
+
+  -- full declaration of type T would go here
+
 end Stack;
 \end{lstlisting}
 
 
 \subsection{\informed\ Utility Packages}
-\noindent\parbox[][][t]{.2\linewidth}{
-    \begin{tikzpicture}[x=2cm,y=2cm,shorten >=2pt, shorten <=2pt]
-      \node[utility] (utility) at (0, 0) {Utility};
-    \end{tikzpicture}}%
- \parbox[][][t]{.8\linewidth}{
 
-This section show you how an \informed\ Utility Package is represented pictorially on an architecture
-diagram. No example of a SPARK Utility package is provided here since these are of such a general nature.
-}
+\begin{wrapfigure}{l}{1.75cm}
+  \begin{tikzpicture}
+    \node[utility] at (0, 0) {Utility};
+  \end{tikzpicture}
+\end{wrapfigure}
 
-However, care should be taken when implementing an \informed\ design as it is easy for there to be
-an excessive proliferation of packages. In many cases the correct place for an operation is in the
-type or variable pacakage upon which it operates. The key thing for an \informed\ design is for the
-operations to be correctly located.
+This section show you how an \informed\ Utility Package is represented
+pictorially on an architecture diagram. No example of a SPARK Utility
+package is provided here since these are of such a general nature.
+
+However, care should be taken when implementing an \informed\ design
+as it is easy for there to be an excessive proliferation of
+packages. In many cases the correct place for an operation is in the
+type or variable pacakage upon which it operates. The key thing for an
+\informed\ design is for the operations to be correctly located.
 
 \subsection{\informed\ Boundary Variable Packages}
-\noindent\parbox[][][t]{.2\linewidth}{
-    \begin{tikzpicture}[x=2cm,y=2cm,shorten >=2pt, shorten <=2pt]
-      \node[boundary,text width=1cm] at (0, 0) {Boundary};
-     \end{tikzpicture}}%
- \parbox[][][t]{.8\linewidth}{
+\begin{wrapfigure}{l}{1.75cm}
+  \begin{tikzpicture}
+    \node[boundary,text width=1.5cm] at (0, 0) {Boundary};
+  \end{tikzpicture}
+\end{wrapfigure}
 
-This section show you how an \informed\ Boundary Variable Package is represented pictorially on an architecture
-diagram, and as a SPARK package.
-}
-A boundary variable is a variable package; however, unlike other instances of such variables the name
-provided in its own variable clause is a place holder representing the stream of data arriving from,
-or being sent tom the outside world rather than simply an abstract name for the internal state of the
+This section show you how an \informed\ Boundary Variable Package is
+represented pictorially on an architecture diagram, and as a SPARK
 package.
 
-It is often useful to place an abstraction layer between the boundary variables of a system and their uesrs;
-this approach is appropriate where direct use of the boundary variables would provide insufficent abstraction
-allowing too much detail to become visable in higher level SPARK annotations. An example of this abstraction
-layer is include in the code example shown below.
+A boundary variable is a variable package; however, unlike other
+instances of such variables the name provided in its own variable
+clause is a place holder representing the stream of data arriving
+from, or being sent tom the outside world rather than simply an
+abstract name for the internal state of the package.
 
-\begin{lstlisting} [label=some-code,caption=An \informed\ SPARK Boundary Variable Package]
---  Workaround, because we don't have volatile ins yet...
+It is often useful to place an abstraction layer between the boundary
+variables of a system and their users; this approach is appropriate
+where direct use of the boundary variables would provide insufficient
+abstraction allowing too much detail to become visable in higher level
+SPARK annotations. An example of this abstraction layer is include in
+the code example shown below.
 
+\begin{lstlisting}[caption=An \informed\ SPARK Boundary Variable Package]
 package Controls
   with Abstract_State => (Start, Stop, Reset)
 is
@@ -157,7 +160,7 @@ is
 
 end Controls;
 
---#inherit Controls;
+with Controls;
 private package Controls.Reset
    with Abstract_State => (Reset)
 is
@@ -165,7 +168,7 @@ is
     with Global => (Input => Reset);
 end Controls.Reset;
 
---#inherit Controls;
+with Controls;
 private package Controls.Start
    with Abstract_State => (Start)
 is
@@ -173,7 +176,7 @@ is
     with Global => (Input => Start);
 end Controls.Start;
 
---#inherit Controls;
+with Controls;
 private package Controls.Stop
    with Abstract_State => (Stop)
 is
@@ -184,10 +187,12 @@ end Controls.Stop;
 \end{lstlisting}
 
 \subsection{\informed\ Connectors}
-\noindent\parbox[][][t]{.2\linewidth}{
-  \begin{tikzpicture}[x=2cm,y=2cm,shorten >=2pt, shorten <=2pt]
-    \draw[->,strong] (0, 0) -- (1, 0);
-    \draw[->,weak]   (0, 1) -- (1, 1);
-  \end{tikzpicture}}%
-\parbox[][][t]{.8\linewidth}{
-Descriptive Text}
+
+\begin{wrapfigure}{l}{1.75cm}
+  \begin{tikzpicture}
+    \draw[->,strong] (0, 0) -- (1.5, 0);
+    \draw[->,weak]   (0, 1) -- (1.5, 1);
+  \end{tikzpicture}
+\end{wrapfigure}
+
+Descriptive Text...
