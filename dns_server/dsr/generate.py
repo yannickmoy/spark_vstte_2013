@@ -148,11 +148,14 @@ def produce_latex():
         fd.write("\n")
 
         fd.write("\\paragraph{Satisfaction argument}\n")
-        fd.write(link_to_dictionary(req["argument"],
-                                    dictionary) + "\n")
+        if len(req["argument"]) == 0:
+            fd.write("\\mustDo{argument goes here}\n")
+        else:
+            fd.write(link_to_dictionary(req["argument"],
+                                        dictionary) + "\n")
 
-        fd.write("\\paragraph{Satisfied by}\n")
         if len(req["satisfied"]) > 0:
+            fd.write("\\paragraph{Satisfied by specification}\n")
             fd.write("\\begin{itemize}\n")
             for s_tag in req["satisfied"]:
                 fd.write("  \\item %s" % mk_link(s_tag))
@@ -206,7 +209,8 @@ def produce_latex():
 
         fd.write("\\subsection{%s}\n" % term.capitalize())
         fd.write("\\label{term:%s}\n" % term.lower().replace(" ", "_"))
-        fd.write(data["definition"] + "\n\n")
+        fd.write(link_to_dictionary(data["definition"],
+                                    dictionary) + "\n\n")
 
     fd.close()
 
