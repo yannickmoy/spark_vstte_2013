@@ -1,0 +1,195 @@
+--  Parse and check well-formedness of zone file
+subprogram Parse_Zone_File
+  features
+    File_Name: in parameter String;
+    Zone_File: requires data access Zone_File.Impl;
+end Parse_Zone_File;
+
+subprogram implementation Parse_Zone_File.Impl
+end Parse_Zone_File.Impl;
+
+subprogram Check_Zone_File
+  features
+    Zone_File: requires data access Zone_File.Impl;
+    Can_Parse: out event port;
+    Cannot_Parse : out event port;
+end Check_Zone_File;
+
+subprogram implementation Check_Zone_File.Impl
+end Check_Zone_File.Impl;
+
+--  Open socket
+subprogram Open_Socket
+end Open_Socket;
+
+subprogram implementation Open_Socket.Impl
+end Open_Socket.Impl;
+
+--  Receive and parse query
+subprogram Parse_Query
+  features
+    Packet: in parameter UDP_Packet.Impl;
+    Query: out parameter Query.Impl;
+end Parse_Query;
+
+subprogram implementation Parse_Query.Impl
+end Parse_Query.Impl;
+
+--  Lookup
+subprogram Look_Up
+  features
+    Query: in parameter Query.Impl;
+    Zone_File: requires data access Zone_File.Impl
+      {Required_Access => read_only ; } ;
+    Res: out parameter UDP_Packet.Impl;
+end Look_Up;
+
+subprogram implementation Look_Up.Impl
+end Look_Up.Impl;
+
+--  The Name_Server is a periodic thread executing every seconds
+--  in the case the Zone_File_Changed event is raised. The latter
+--  is raised when the Zone_File changes.
+thread Name_Server
+  features  
+    Zone_File_Changed : in event port;
+    Can_Parse : out event port;
+    Cannot_Parse : out event port;
+    Zone_File: requires data access Zone_File.Impl;
+    Zone_File_Name: in data port String;    
+  properties
+    Dispatch_Protocol => Periodic;
+    Period            => 1000ms;
+end Name_Server;
+
+--  At every cycle, the Name_Server parses and checkes the zone file.
+--  If the check is positive, the Can_Parse event is sent. Otherwise,
+--  the Cannot_Parse event is sent.
+thread implementation Name_Server.Impl
+  calls
+     Parse_And_Check :{
+     	Parse_Zone_File : subprogram Parse_Zone_File;
+     	Check_Zone_File : subprogram Check_Zone_File;
+     };
+  connections
+     parameter Zone_File_Name -> Parse_Zone_File.File_Name;
+     data access Zone_File -> Parse_Zone_File.Zone_File;
+     data access Zone_File -> Check_Zone_File.Zone_File;
+     event port Check_Zone_File.Can_Parse -> Can_Parse;
+     event port Check_Zone_File.Cannot_Parse -> Cannot_Parse;
+end Name_Server.Impl;
+
+--  The Resolver creates a socket and starts waiting once it receives
+--  the Start event. Once it has started, it is triggered by the arrival of
+--  a new packet. Each new request is satisfied with a timeout.
+thread Resolver
+  features
+    In_Packet: in event data port UDP_Packet.Impl;
+    Out_Packet: out data port UDP_Packet.Impl;
+    Start: in event port;
+    Stop : in event port;
+    Zone_File: requires data access Zone_File.Impl;
+  properties
+    Dispatch_Protocol => Timed;
+    Period            => 5ms;
+end Resolver;
+
+thread implementation Resolver.Impl
+  calls
+    Init: {
+    	Open_Socket : subprogram Open_Socket.Impl;
+    } in modes (Not_Running);
+    Process_Request:  {
+      Parse: subprogram Parse_Query;
+      Look_Up: subprogram Look_Up;
+    } in modes (Processing);
+  connections
+     parameter In_Packet -> Parse.Packet;
+     parameter Parse.Query -> Look_Up.Query;
+     data access Zone_File -> Look_Up.Zone_File;
+     parameter Look_Up.Res -> Out_Packet;
+  modes
+     Not_Running : initial mode;
+     Waiting : mode;
+     Processing : mode;
+     Not_Running -[ Start ]-> Waiting;
+     Waiting -[ In_Packet ]-> Processing;
+     Waiting -[ Stop ]-> Not_Running;
+ end Resolver.Impl;
+
+--  Process assembling the different components
+process DNS
+  features
+    In_Packet: in event data port UDP_Packet.Impl;
+    Out_Packet: out data port UDP_Packet.Impl;
+    Zone_File_Name: in data port String;
+end DNS;
+
+process implementation DNS.Impl
+  subcomponents
+    Name_Server: thread Name_Server.Impl;
+    Resolver: thread Resolver.Impl;
+    Zone_File: data Zone_File.Impl;
+  connections
+    event port Name_Server.Can_Parse -> Resolver.Start;
+    event port Name_Server.Cannot_Parse -> Resolver.Stop;
+    event data port In_Packet -> Resolver.In_Packet;
+    data port Resolver.Out_Packet -> Out_Packet;
+    data access Zone_File -> Resolver.Zone_File;
+    data access Zone_File -> Name_Server.Zone_File;
+    data port Zone_File_Name -> Name_Server.Zone_File_Name;
+end DNS.Impl;
+
+system DNS_Server
+end DNS_Server;
+
+system implementation DNS_Server.Impl
+  subcomponents
+    DNS: process DNS.Impl;
+end DNS_Server.Impl;
+
+--  Datatypes
+data Integer
+end Integer;
+
+data String
+end String;
+
+data Boolean
+end Boolean;
+
+data UDP_Port
+end UDP_Port;
+
+data implementation UDP_Port.Impl
+end UDP_Port.Impl;
+
+data UDP_Packet
+end UDP_Packet;
+
+data implementation UDP_Packet.Impl
+end UDP_Packet.Impl;
+
+data Zone_File
+end Zone_File;
+
+data implementation Zone_File.Impl
+end Zone_File.Impl;
+
+data Socket
+end Socket;
+
+data implementation Socket.Impl
+end Socket.Impl;
+
+data Query
+end Query;
+
+data implementation Query.Impl
+end Query.Impl;
+
+data Response
+end Response;
+
+data implementation Response.Impl
+end Response.Impl;
