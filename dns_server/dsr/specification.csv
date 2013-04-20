@@ -1,16 +1,19 @@
-Spec ID,Specification Statement Description,In the context of
-S.Data,The Name Server must be capable of managing two types of data zones and cached data.,
-S.Cache,The Name Server must cache recent query results to improve the performance of the Name Server.,
-S.Cache.Old,The Name Server must discard any old cached data after a its TTL has expired. The default TTL is 86400 seconds.,
-S.Lookup,"If the Name Server is able to resolve a Domain Name from information in its database, then the Name Server must return the location of that resource.","D.HumanUsability, D.ComputerAccessability, D.DomainNamePurpose, D.ResourceAvailability"
-S.Lookup.Fail,"If the Name Server is unable to resolve the Domain Name locally, then the name of another Name Server must be returned.",D.InternetSize
-S.ReadZoneFile,The Name Server shall be refreshed by reading data from a Zone File and updating the data in the Name Server Database.,
-S.ZoneFileValidation,The Format of the data loaded into the Name Server Database shall be validated before the data is loaded into the Name Server.,
-S.ZoneFileValidation.Fail,"If the Zone File does not satisfy the specifcation items S.ZoneFileFormat1-4, then no changes will be made to the Name Server Database.",
-S.ZoneFileFormat.1,"The Name Server shall read zone file that use a colon-seperated file format, with one entry per line.",
-S.ZoneFileFormat.2,The Name Server shall ignore Any Empty lines and lines beginning with \# when loading the Zone File data.,
-S.ZoneFileFormat.3,The Zone file shall be encoded using 7 bit US-ASCII encoding.,
-S.ZoneFileFormat.4,The detailed format of the Zone data shall match the Zone File Format defined in the Background Information in the VSComp documentation.,
-S.ZoneFileLoad,"The Name Server database shall only be modified, once all the Zone File data has been loaded and validated.",
-S.InputFormat,The Name Server must be capable of understanding Domain Names that are supplied in the DNS Protocol Format (RFC 1035).,
-S.Robustness,The input parser should seek to error correct obvious errors in the input format.,
+"Spec ID","Specification Statement Description","In the context of"
+"S.Data","The Name Server must be capable of managing two types of data; zones and cached data.",
+"S.Cache","The Name Server must cache recent query results to improve the performance of the Name Server.",
+"S.Cache.Old","The Name Server must discard any old cached data after a its TTL has expired. The default TTL is 86400 seconds.",
+"S.Lookup","If the Name Server is able to resolve a Domain Name from information in its database, then the Name Server must return the location of that resource.","D.HumanUsability, D.ComputerAccessability, D.DomainNamePurpose, D.ResourceAvailability"
+"S.Lookup.Fail","If the Name Server is unable to resolve the Domain Name locally, then the name of another Name Server must be returned.","D.InternetSize"
+"S.ReadZoneFile","The Name Server shall be refreshed by reading data from a Zone File and updating the data in the Name Server Database.",
+"S.ZoneFileValidation","The Format of the data loaded into the Name Server Database shall be validated before the data is loaded into the Name Server.",
+"S.ZoneFileValidation.Fail","If the Zone File does not satisfy the specifcation items S.ZoneFileFormat1-4, then no changes will be made to the Name Server Database.",
+"S.ZoneFileFormat.1","The Name Server shall read zone file that use a colon-seperated file format, with one entry per line.",
+"S.ZoneFileFormat.2","The Name Server shall ignore Any Empty lines and lines beginning with \# when loading the Zone File data.",
+"S.ZoneFileFormat.3","The Zone file shall be encoded using 7 bit US-ASCII encoding.",
+"S.ZoneFileFormat.4","The detailed format of the Zone data shall match the Zone File Format defined in the Background Information in the VSComp documentation.",
+"S.ZoneFileLoad","The Name Server database shall only be modified, once all the Zone File data has been loaded and validated.",
+"S.InputFormat","The Name Server must be capable of understanding Domain Names that are supplied in the DNS Protocol Format (RFC 1035).",
+"S.Robustness","The input parser should seek to error correct obvious errors in the input format.",
+"S.Async","The Name Server shall process requests asynchronously.",
+"S.ZoneFilePoll","The zone file shall be re-read if its contents change.","D.INotify"
+"S.Syslog","Errors in the zone file shall be recorded in the system log.","D.Syslog"
