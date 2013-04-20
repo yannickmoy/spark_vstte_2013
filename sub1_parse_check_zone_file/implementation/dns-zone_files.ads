@@ -1,15 +1,20 @@
 with Types; use Types;
 
-private package DNS.Zone_Files
-is
+private package DNS.Zone_Files is
+
+   --  Each record stores a Domain_Name together with some data. The Use_Until
+   --  field gives the time at which this data becomes obsolete.
+
    type NS_Record is record
       Domain_Name : Domain_Name_T;
       Name_Server : Domain_Name_T;
+      Use_Until   : Time_T;
    end record;
 
    type A_Record is record
       Domain_Name : Domain_Name_T;
       IP_Address  : Address_T;
+      Use_Until   : Time_T;
    end record;
 
    type SOA_Record is record
@@ -20,27 +25,32 @@ is
       Retry               : Time_T;
       Expire              : Time_T;
       Minimum             : Time_T;
+      Use_Until           : Time_T;
    end record;
 
    type PTR_Record is record
       Domain_Name         : Domain_Name_T;
       Domain_Name_Pointed : Domain_Name_T;
+      Use_Until           : Time_T;
    end record;
 
    type MX_Record is record
       Domain_Name    : Domain_Name_T;
       Mail_Exchanger : Domain_Name_T;
       Distance       : Distance_T;
+      Use_Until      : Time_T;
    end record;
 
    type TXT_Record is record
       Domain_Name : Domain_Name_T;
       Text        : Text_T;
+      Use_Until   : Time_T;
    end record;
 
    type CNAME_Record is record
       Domain_Name    : Domain_Name_T;
       Canonical_Name : Domain_Name_T;
+      Use_Until      : Time_T;
    end record;
 
    type NS_Array    is array (Positive range <>) of NS_Record;
@@ -76,6 +86,24 @@ is
 
    procedure Check_Zone_File
      (Parsed_File : in Zone_File;
-      Res         : out Boolean);
+      Res         : out Boolean) with
+     Post =>
+       (Res =
+           --  A domain name can only have at most one entry in table NS
+          ((for all J in Parsed_File.NS'Range =>
+              (for all K in Parsed_File.NS'Range =>
+                 (if J /= K then
+                    Parsed_File.NS (J).Domain_Name
+                      /=
+                    Parsed_File.NS (K).Domain_Name)))
+             and then
+
+           --  A domain name can only have at most one entry in table A
+           (for all J in Parsed_File.A'Range =>
+              (for all K in Parsed_File.A'Range =>
+                 (if J /= K then
+                    Parsed_File.A (J).Domain_Name
+                      /=
+                    Parsed_File.A (K).Domain_Name)))));
 
 end DNS.Zone_Files;
