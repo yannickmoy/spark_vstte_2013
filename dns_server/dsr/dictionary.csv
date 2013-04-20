@@ -1,8 +1,26 @@
-Term,Definition
-Address,Location on the Internet
-Cached Data,"Previous data retreived as a result of recent Resolver queries on the Name Server, and held with the Name Server to speed up susequent queries."
-Domain Name,A Human-readable label for a resource.
-Domain Space,
-Name Server,"An Application for resolving Human readable labels for resources, into a Machine Understandable Location on the Internet."
-Resource Location,
-Zones,A pruned sub-tree of the Domain Space
+"Term","Definition"
+"Address","A 32 bit Internet address. \cite{RFC1035}"
+"Cached Data","Previous data retreived as a result of recent Resolver queries on the Name Server, and held with the Name Server to speed up susequent queries."
+"Domain Name","A Human-readable label for a resource."
+"Domain Space","The domain name space, which is a specification for a tree structured
+name space.  Conceptually, each node and leaf of the domain name space
+tree names a set of information, and query operations are attempts to
+extract specific types of information from a particular set.  A query
+names the domain name of interest and describes the type of resource
+information that is desired.  For example, the ARPA Internet uses some
+of its domain names to identify hosts; queries for address resources
+return ARPA Internet host addresses.  However, to preserve the
+generality of the domain mechanism, domain names are not required to
+have a one-to-one correspondence with host names, host addresses, or
+any other type of information. \cite{RFC882}"
+"Name Server","Name servers are server programs which hold information about the
+domain tree's structure and set information.  A name server may cache
+structure or set information about any part of the domain tree, but in
+general a particular name server has complete information about a
+subset of the domain space, and pointers to other name servers that
+can be used to lead to information from any part of the domain tree.
+Name servers know the parts of the domain tree for which they have
+complete information; these parts are called zones; a name server is
+an authority for these parts of the name space. \cite{RFC882}"
+"Zones","A zone is the complete database for a particular ""pruned"" subtree of the domain space. \cite{RFC1035}"
+"Resolver","A program that extracts information from name servers in response to user requests. \cite{RFC1035}"
