@@ -2,19 +2,19 @@ with Types; use Types;
 
 private package DNS.Zone_Files is
 
-   --  Each record stores a Domain_Name together with some data. The Use_Until
-   --  field gives the time at which this data becomes obsolete.
+   --  Each record stores a Domain_Name together with some data. The
+   --  Time_To_Live field is not useful in the zone, only for cached data.
 
    type NS_Record is record
-      Domain_Name : Domain_Name_T;
-      Name_Server : Domain_Name_T;
-      Use_Until   : Time_T;
+      Domain_Name  : Domain_Name_T;
+      Name_Server  : Domain_Name_T;
+      Time_To_Live : Time_T;
    end record;
 
    type A_Record is record
-      Domain_Name : Domain_Name_T;
-      IP_Address  : Address_T;
-      Use_Until   : Time_T;
+      Domain_Name  : Domain_Name_T;
+      IP_Address   : Address_T;
+      Time_To_Live : Time_T;
    end record;
 
    type SOA_Record is record
@@ -25,32 +25,32 @@ private package DNS.Zone_Files is
       Retry               : Time_T;
       Expire              : Time_T;
       Minimum             : Time_T;
-      Use_Until           : Time_T;
+      Time_To_Live        : Time_T;
    end record;
 
    type PTR_Record is record
       Domain_Name         : Domain_Name_T;
       Domain_Name_Pointed : Domain_Name_T;
-      Use_Until           : Time_T;
+      Time_To_Live        : Time_T;
    end record;
 
    type MX_Record is record
       Domain_Name    : Domain_Name_T;
       Mail_Exchanger : Domain_Name_T;
       Distance       : Distance_T;
-      Use_Until      : Time_T;
+      Time_To_Live   : Time_T;
    end record;
 
    type TXT_Record is record
-      Domain_Name : Domain_Name_T;
-      Text        : Text_T;
-      Use_Until   : Time_T;
+      Domain_Name  : Domain_Name_T;
+      Text         : Text_T;
+      Time_To_Live : Time_T;
    end record;
 
    type CNAME_Record is record
       Domain_Name    : Domain_Name_T;
       Canonical_Name : Domain_Name_T;
-      Use_Until      : Time_T;
+      Time_To_Live   : Time_T;
    end record;
 
    type NS_Array    is array (Positive range <>) of NS_Record;
