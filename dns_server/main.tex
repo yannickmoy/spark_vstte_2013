@@ -319,7 +319,25 @@ application to this problem.
 
 
 \chapter{Requirements, Domain and Specification}
-\mustDo{Context Diagram}
+\section{Context Diagram}
+
+\begin{center}
+  \begin{tikzpicture}[x=3cm,y=1.5cm,shorten >=3pt,shorten <=3pt]
+    \node[draw] (dns) at (0, 0) {Name Server};
+    \node (other_dns) at (1, 1) {Other Name Server};
+    \node (zone_file) at (0, -1) {Zone File};
+    \node (resolver) at (-1, 1) {Resolver};
+    \node (user) at (-1, 2) {Application / User};
+    \node (syslog) at (1, -1) {Syslog};
+
+    \draw[<->] (user) -- (resolver);
+    \draw[<->] (resolver) -- (dns);
+    \draw[<->] (dns) -- (other_dns);
+    \draw[->]  (dns) -- (syslog);
+    \draw[->]  (zone_file) -- (dns);
+
+  \end{tikzpicture}
+\end{center}
 
 \input{dsr/dsr.tex}
 \input{dsr/dictionary.tex}
