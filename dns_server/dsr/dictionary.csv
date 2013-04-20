@@ -1,1 +1,8 @@
-"Term","Definition"
+Term,Definition
+Address,Location on the Internet
+Cached Data,"Previous data retreived as a result of recent Resolver queries on the Name Server, and held with the Name Server to speed up susequent queries."
+Domain Name,A Human-readable label for a resource.
+Domain Space,
+Name Server,"An Application for resolving Human readable labels for resources, into a Machine Understandable Location on the Internet."
+Resource Location,
+Zones,A pruned sub-tree of the Domain Space

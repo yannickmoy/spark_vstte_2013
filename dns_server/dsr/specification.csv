@@ -1,1 +1,6 @@
-"Spec ID","Specification Statement Description","In the context of"
+Spec ID,Specification Statement Description,In the context of
+S.Data,The Name Server must be capable of managing two types of data zones and cached data.,
+S.Cache,The Name Server must cache recent query results to improve the performancce of the Name Server.,
+S.Cache.Old,The Name Server must discard any old cached data after a specifed timeout period.,
+S.Lookup,"If the Name Server is able to resolve a Domain Name from information in its database, then the Name Server must return the location of that resource.",
+S.Lookup.Fail,"If the Name Server is unable to resolve the Domain Name locally, then the name of another Name Server must be returned.",

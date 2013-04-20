@@ -1,1 +1,7 @@
-"Requirement ID","Requirement Description","Satisfaction Argument","Satisfied by"
+Requirement ID,Requirement Description,Satisfaction Argument,Satisfied by
+R.Lookup,"The Name Server is supplied with a Domain Name and shall return either the Resource Location, or the Address of another Name Server.",,"S.Data, S.Cache, S.Cache.Old, S.Lookup, S.Lookup.Fail"
+R.Performance,The Name Server must return data in a timely manner.,,"S.Lookup, S.Cache, S.Cache.Old"
+R.Accuracy,The Name Server must not use any stale data.,,S.Cache.Old
+R.ReverseLookup,"The Name Server must be capable of being supplied with the Address of a resource and then returning the Domain Name, or the Address of another Domain Server",,
+R.DNSFormat,The Name Server must be capable of understanding Domain Names that are supplied in the DNS Protocol Format.,,
+R.Database,The Name Server must be capable of being updated periodically with more current information.,,
