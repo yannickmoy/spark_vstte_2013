@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<Locations >
+  <Project>
+    <vfs_file>C:\home\Matteo\vsste\data\spark_vstte_2013\architecture\dns.gpr</vfs_file>
+    <file_marker column=" 1" line=" 15" >
+      <vfs_file>C:\home\Matteo\vsste\data\spark_vstte_2013\architecture\obj\dns.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 17" >
+      <vfs_file>C:\home\Matteo\vsste\data\spark_vstte_2013\architecture\obj\dns.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 10" >
+      <vfs_file>C:\home\Matteo\vsste\data\spark_vstte_2013\architecture\obj\dns.adb</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 1" line=" 18" >
+      <vfs_file>C:\home\Matteo\vsste\data\spark_vstte_2013\architecture\obj\dns-resolver.ads</vfs_file>
+    </file_marker>
+  </Project>
+  <Project >
+    <file_marker column=" 1" line=" 13">
+      <vfs_file >C:\home\Matteo\vsste\data\spark_vstte_2013\architecture\obj\dns.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 15">
+      <vfs_file >C:\home\Matteo\vsste\data\spark_vstte_2013\architecture\obj\dns.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 10">
+      <vfs_file >C:\home\Matteo\vsste\data\spark_vstte_2013\architecture\obj\dns.adb</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 1" line=" 18">
+      <vfs_file >C:\home\Matteo\vsste\data\spark_vstte_2013\architecture\obj\dns-resolver.ads</vfs_file>
+    </file_marker>
+  </Project>
+</Locations>
