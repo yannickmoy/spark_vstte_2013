@@ -160,7 +160,7 @@ def produce_latex():
             for s_tag in req["satisfied"]:
                 fd.write("  \\item %s" % mk_link(s_tag))
                 if len(specification[s_tag]["context"]) > 0:
-                    fd.write(" (")
+                    fd.write(" (assuming ")
                     fd.write(", ".join(map(mk_link,
                                            specification[s_tag]["context"])))
                     fd.write(")")
