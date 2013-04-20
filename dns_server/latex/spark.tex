@@ -1,0 +1,19 @@
+\lstdefinelanguage{SPARK}{
+  language = [95]Ada,
+  morekeywords = {pre,post,assert,assume,check,derives,hide,global,inherit,from,own,initializes,main_program},
+  comment=[l][commentstyle]{--\ },
+  texcl=true,
+  showstringspaces=false
+}
+
+\lstdefinestyle{tinystyle}
+   {basicstyle=\footnotesize\tt,
+    keywordstyle=\color{blue},
+    commentstyle=\rmfamily\it\color{gray},
+    captionpos=b,
+    caption={},label={},
+    numbers=none,
+    escapeinside={(*}{*)}}
+
+\lstset{language=SPARK}
+\lstset{style=tinystyle}

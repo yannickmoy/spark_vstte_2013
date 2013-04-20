@@ -13,6 +13,13 @@
 \usepackage{rotating}
 \usepackage{cite}
 
+\usepackage{listings}
+\input{latex/spark.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows,shapes,shadows}
+\input{latex/informed.tex}
+
 \usepackage[textsize=scriptsize,textwidth=4cm]{todonotes}
 \newcommand{\mustDo}[1]{\todo[color=red!40]{MUST: #1}}
 \newcommand{\shouldDo}[1]{\todo[color=orange!40]{SHOULD: #1}}
@@ -23,6 +30,8 @@
 \newcommand{\spark}[0]{{\sc Spark}}
 \newcommand{\reveal}[0]{{\sc reveal}\texttrademark}
 \newcommand{\informed}[0]{{\sc informed}}
+
+
 
 
 \begin{document}
