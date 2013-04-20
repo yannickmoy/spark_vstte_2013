@@ -1,0 +1,201 @@
+--  Parse and check well-formedness of zone file
+subprogram Parse_Zone_File
+  features
+    Zone_File: requires data access Zone_File.Impl;
+end Parse_Zone_File;
+
+subprogram implementation Parse_Zone_File.Impl
+end Parse_Zone_File.Impl;
+
+subprogram Check_Zone_File
+  features
+    Zone_File: requires data access Zone_File.Impl;
+    Res: out parameter Boolean;
+end Check_Zone_File;
+
+subprogram implementation Check_Zone_File.Impl
+end Check_Zone_File.Impl;
+
+--  Open socket
+subprogram Open_Socket
+end Open_Socket;
+
+subprogram implementation Open_Socket.Impl
+end Open_Socket.Impl;
+
+--  Receive and parse query
+subprogram Parse_Query
+  features
+    Packet: in parameter UDP_Packet.Impl;
+    Query: out parameter Query.Impl;
+end Parse_Query;
+
+subprogram implementation Parse_Query.Impl
+end Parse_Query.Impl;
+
+--  Lookup
+subprogram Look_Up
+  features
+    Query: in parameter Query.Impl;
+    Zone_File: requires data access Zone_File.Impl
+      {Required_Access => read_only ; } ;
+    Res: out parameter UDP_Packet.Impl;
+end Look_Up;
+
+subprogram implementation Look_Up.Impl
+end Look_Up.Impl;
+
+--  DNS Manager
+thread DNS_Manager
+  features
+    Start_Everything: out event port;
+    Can_Start       : out data port Boolean;
+    Zone_File: requires data access Zone_File.Impl;
+end DNS_Manager;
+
+thread implementation DNS_Manager.Impl
+  calls
+     Parse_And_Check : {
+     	Parse : subprogram Parse_Zone_File.Impl;
+     	Check : subprogram Check_Zone_File.Impl;
+     };
+     Open_Socket : {
+     	Open : subprogram Open_Socket.Impl;
+     };
+  connections
+     data access Zone_File -> Parse.Zone_File;
+     data access Zone_File -> Check.Zone_File;
+     parameter Check.Res -> Can_Start;
+  --  If the parse and check of the zone file is correct,
+  --  the Start_Everything event is sent.
+  annex behaviour_specification {**
+     states
+        Init : initial state;
+        Check : state;
+        Error : final state;
+        Start : final state;
+     transitions
+        Init -[ ]-> Check { Parse_And_Check };
+        Check -[ Can_Start ]-> Start {
+        	 Open_Socket;
+        	 !Start_Everything;
+        	 };
+        Check -[not Can_Start ]-> Error;	
+  **};
+end DNS_Manager.Impl;
+
+--  Receiver task
+thread Receiver
+  features
+    In_Packet: in event data port UDP_Packet.Impl;
+    Out_Packet: out data port UDP_Packet.Impl;
+    Start: in event port;
+    Zone_File: requires data access Zone_File.Impl;
+  properties
+    Dispatch_Protocol => Sporadic;
+    Period            => 5ms;
+end Receiver;
+
+thread implementation Receiver.Impl
+  calls
+    Process_Request:  {
+      Parse: subprogram Parse_Query;
+      Look_Up: subprogram Look_Up;
+      };
+  connections
+     parameter In_Packet -> Parse.Packet;
+     parameter Parse.Query -> Look_Up.Query;
+     data access Zone_File -> Look_Up.Zone_File;
+     parameter Look_Up.Res -> Out_Packet;
+  --  When a new packet arrives, the processing start with 
+  --  a 10ms timeout.
+  annex behaviour_specification {**
+     states
+        Not_Running : initial state;
+        Waiting_Request : state;
+        Request_Received : state;
+        Request_Processed : final state;
+        Timed_Out : final state;
+     transitions
+        Not_Running -[ Start ]-> Waiting_Request;
+        Waiting_Request -[ In_Packet ] -> Request_Received {
+        	Process_Request;
+        };
+        Request_Received -[ on timeout ]-> Timed_Out;
+        Request_Received -[ ]-> Request_Processed;
+  **};
+ end Receiver.Impl;
+
+--  Process assembling the different components
+process DNS
+  features
+    In_Packet: in event data port UDP_Packet.Impl;
+    Out_Packet: out data port UDP_Packet.Impl;
+end DNS;
+
+process implementation DNS.Impl
+  subcomponents
+    Receiver: thread Receiver.Impl;
+    Manager: thread DNS_Manager.Impl;
+    Zone_File: data Zone_File.Impl;
+  connections
+    event port Manager.Start_Everything -> Receiver.Start;
+    event data port In_Packet -> Receiver.In_Packet;
+    data port Receiver.Out_Packet -> Out_Packet;
+    data access Zone_File -> Receiver.Zone_File;
+    data access Zone_File -> Manager.Zone_File;
+end DNS.Impl;
+
+system DNS_Server
+end DNS_Server;
+
+system implementation DNS_Server.Impl
+  subcomponents
+    DNS: process DNS.Impl;
+end DNS_Server.Impl;
+
+--  Datatypes
+data Integer
+end Integer;
+
+data String
+end String;
+
+data Boolean
+end Boolean;
+
+data UDP_Port
+end UDP_Port;
+
+data implementation UDP_Port.Impl
+end UDP_Port.Impl;
+
+data UDP_Packet
+end UDP_Packet;
+
+data implementation UDP_Packet.Impl
+end UDP_Packet.Impl;
+
+data Zone_File
+end Zone_File;
+
+data implementation Zone_File.Impl
+end Zone_File.Impl;
+
+data Socket
+end Socket;
+
+data implementation Socket.Impl
+end Socket.Impl;
+
+data Query
+end Query;
+
+data implementation Query.Impl
+end Query.Impl;
+
+data Response
+end Response;
+
+data implementation Response.Impl
+end Response.Impl;
