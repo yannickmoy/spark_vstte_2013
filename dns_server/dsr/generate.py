@@ -102,7 +102,9 @@ def link_to_dictionary(s, dictionary):
     for item in dictionary:
         tmp = re.compile(r"\b" + item + r"\b",
                          re.IGNORECASE)
-        rv = tmp.sub(r"\hyperref[term:%s]{%s}" % (item.lower(), item),
+        rv = tmp.sub(r"\hyperref[term:%s]{%s}" % \
+                         (item.lower().replace(" ", "_"),
+                          item),
                      rv)
 
     return rv
@@ -150,16 +152,17 @@ def produce_latex():
                                     dictionary) + "\n")
 
         fd.write("\\paragraph{Satisfied by}\n")
-        fd.write("\\begin{itemize}\n")
-        for s_tag in req["satisfied"]:
-            fd.write("  \\item %s" % mk_link(s_tag))
-            if len(specification[s_tag]["context"]) > 0:
-                fd.write(" (")
-                fd.write(", ".join(map(mk_link,
-                                       specification[s_tag]["context"])))
-                fd.write(")")
-            fd.write("\n")
-        fd.write("\\end{itemize}\n")
+        if len(req["satisfied"]) > 0:
+            fd.write("\\begin{itemize}\n")
+            for s_tag in req["satisfied"]:
+                fd.write("  \\item %s" % mk_link(s_tag))
+                if len(specification[s_tag]["context"]) > 0:
+                    fd.write(" (")
+                    fd.write(", ".join(map(mk_link,
+                                           specification[s_tag]["context"])))
+                    fd.write(")")
+                fd.write("\n")
+            fd.write("\\end{itemize}\n")
 
 
     # fd.write("\\clearpage\n")
@@ -202,7 +205,7 @@ def produce_latex():
         data = dictionary[term]
 
         fd.write("\\subsection{%s}\n" % term.capitalize())
-        fd.write("\\label{term:%s}\n" % term.lower())
+        fd.write("\\label{term:%s}\n" % term.lower().replace(" ", "_"))
         fd.write(data["definition"] + "\n\n")
 
     fd.close()
