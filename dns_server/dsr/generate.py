@@ -115,6 +115,21 @@ def produce_latex():
     specification = read_input("specification.csv", FORMAT_SPEC)
     dictionary    = read_input("dictionary.csv",    FORMAT_DATA)
 
+    # Sanity check
+    errors = False
+    for r_tag in requirements:
+        for s_tag in requirements[r_tag]["satisfied"]:
+            if s_tag not in specification:
+                print "error: %s: unknown spec item %s" % (r_tag, s_tag)
+                errors = True
+    for s_tag in specification:
+        for d_tag in specification[s_tag]["context"]:
+            if d_tag not in domain:
+                print "error: %s: unknown domain item %s" % (s_tag, d_tag)
+                errors = True
+    if errors:
+        sys.exit(1)
+
     # We have three mostly identical copies of this because we
     # probably will want to do some individual output, such as linking
     # to other bits for each.
