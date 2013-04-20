@@ -1,1 +1,6 @@
-"Domain ID","Domain Statement Description"
+Domain ID,Domain Statement Description
+D.ComputerAccessability,A unique coding mechanism is required to access all the data on the internet.
+D.DomainNamePurpose,"The goal of Domain Names is to provide a mechanism for naming resources in such a way that the names are usable in different hosts, networks, protocol families, internets, and administrative organizations."
+D.HumanUsability,Users want to access the resources via Human-readable labels.
+D.InternetSize,The Internet is a large solution space with billions of artefacts.
+D.ResourceAvailability,Users wish to access resource over the intenet.
