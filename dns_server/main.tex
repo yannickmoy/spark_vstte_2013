@@ -17,7 +17,7 @@
 \input{latex/spark.tex}
 
 \usepackage{tikz}
-\usetikzlibrary{calc,arrows,shapes,shadows}
+\usetikzlibrary{calc,arrows,shapes,shadows,through}
 \input{latex/informed.tex}
 
 \usepackage[textsize=scriptsize,textwidth=4cm]{todonotes}
@@ -328,7 +328,6 @@ application to this problem.
 
 \chapter{Requirements, Domain and Specification}
 \section{Context Diagram}
-
 \begin{center}
   \begin{tikzpicture}[x=3cm,y=1.5cm,shorten >=3pt,shorten <=3pt]
     \node[draw] (dns) at (0, 0) {Name Server};
@@ -352,6 +351,40 @@ application to this problem.
 
 
 \chapter{Architecture}
+
+\section{World-Machine Diagram}
+\begin{center}
+  \begin{tikzpicture}[font=\scriptsize,x=1.5cm]
+    \tikzstyle{circ}=[draw,circle,text width=3cm,text badly centered]
+    \tikzstyle{lbl}=[text width=1.5cm,font=\tiny\tt,text badly centered]
+
+    \node[circ,text width=4cm] at (0, 0) {Name\\Server};
+    \node[circ] at (-1.5,  1.5) {Resolver};
+    \node[circ] at ( 1.5,  1.5) {Other\\DNS};
+    \node[circ] at (   0, -2.5) {Zone\\File};
+
+    \node[lbl] at (-0.9,  0.9) {query\\response};
+    \node[lbl] at ( 0.9,  0.9) {query\\response};
+    \node[lbl] at ( 0.0, -1.5) {load zone file};
+  \end{tikzpicture}
+\end{center}
+
+% \clearpage
+% \section{\informed\ design}
+% \begin{center}
+%   \begin{tikzpicture}
+%     \node[main] (main) at (0, 0) {main};
+
+%     \node[type] (dns_t) at (-4, 1) {DNS\_T};
+%     \node[boundary] (resolver) at (-4, -1) {Resolver};
+
+%     \node[utility,text width=2cm] (dns_wfc) at (-3, 2) {DNS well-formed checker};
+%     \node[utility,text width=2cm] (zd_wfc) at ( 0, 2) {Zone data well-formed checker};
+%     \node[utility,text width=2cm] (parser) at ( 3, 2) {Zone file parser};
+
+%     \node[boundary] (syslog) at ( 1.5, 4) {Syslog};
+%   \end{tikzpicture}
+% \end{center}
 
 \bibliography{main}
 
