@@ -24,3 +24,5 @@ complete information; these parts are called zones; a name server is
 an authority for these parts of the name space. \cite{RFC1034}"
 "Zones","A zone is the complete database for a particular ""pruned"" subtree of the domain space. \cite{RFC1035}"
 "Resolver","A program that extracts information from name servers in response to user requests. \cite{RFC1035}"
+"Zone File","A file contaning one or more Zones for a Name Server. In this project the file format is a subset of the djbdns zone file format."
+"Database","The in-memory database used by the Name Server."

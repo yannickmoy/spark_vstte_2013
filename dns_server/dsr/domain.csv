@@ -6,3 +6,7 @@
 "D.ResourceAvailability","Users wish to access resource over the intenet."
 "D.INotify","The target OS provides some way of detecting changes to a file, such as inotify."
 "D.Syslog","The target OS provides some logging facility, such as syslog or simple log files."
+"D.ZoneFileFormat.1","The zone file is colon-seperated, with one entry per line."
+"D.ZoneFileFormat.2","Empty lines and lines beginning with \# should be ignored when interpreting Zone file data."
+"D.ZoneFileFormat.3","The Zone file is encoded using 7 bit US-ASCII encoding."
+"D.ZoneFileFormat.4","The detailed format of the Zone data shall match the Zone File Format defined in the Background Information in the VSComp documentation."
