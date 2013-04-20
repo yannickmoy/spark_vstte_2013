@@ -1,0 +1,9 @@
+2. open socket
+
+Open a socket on a port of your choice (port 53 is the standard DNS port, but
+opening such a socket usually requires root privileges).  Thus, to solve this
+sub-problem, one must specify and implement a function of the general form
+
+open: unit -> SOCKET
+
+-------------------------------------------------------------------------------

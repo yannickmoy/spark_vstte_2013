@@ -1,0 +1,11 @@
+1. parse and check well-formedness of zone file
+
+One needs to define a datatype (ZONE_FILE) to encode a (potentially ill-formed)
+zone file.  Thus to solve sub-problem 1, one must specify and implement a
+function of the general form
+
+parse: FILE -> ZONE_FILE
+
+check: ZONE_FILE -> BOOLEAN
+
+-------------------------------------------------------------------------------

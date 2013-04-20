@@ -1,0 +1,7 @@
+3. receive query
+
+Received UDP packets on said socket and decompose into a query.
+
+receive: SOCKET -> PRE_QUERY
+
+-------------------------------------------------------------------------------
