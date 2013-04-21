@@ -7,6 +7,8 @@ Requirements for DNS query reception
 
 REQ-1: Received DNS query is a sequence of octets.
 
+REQ-1.1: Maximum size of a DNS query is 512 octets.
+
 REQ-2: Octets are transmitted on wire in the same order as shown in RFC
 1035 diagrams.
 
