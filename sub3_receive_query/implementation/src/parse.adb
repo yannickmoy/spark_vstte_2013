@@ -13,7 +13,7 @@ package body Parse is
 
       -- REQ-6.2
       if Extract_Bits_Of_Octet(Query => Query, Offset => 2,
-                               Bit_Shift_Right => 7, Bit_Mask => 1) /= 1 then
+                               Bit_Shift_Right => 7, Bit_Mask => 1) /= 0 then
          Return_Code := Invalid_Query;
          return;
       end if;
@@ -34,10 +34,10 @@ package body Parse is
          return;
       end case;
 
-      -- REQ-6.4
+      -- REQ-6.4 and REQ-6.4.0
       if Extract_Bits_Of_Octet(Query => Query, Offset => 2,
                                Bit_Shift_Right => 0,
-                               Bit_Mask => 2#111#) /= 0
+                               Bit_Mask => 2#110#) /= 0
         or Query(3) /= 0 then
          Return_Code := Invalid_Query;
          return;

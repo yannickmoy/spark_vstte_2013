@@ -69,13 +69,15 @@ REQ-6: The header contains the following fields:
 
 REQ-6.1: The ID field is a 16 bits identifier.
 
-REQ-6.2: The QR field should be 1 (Query). Process as invalid query
+REQ-6.2: The QR field should be 0 (Query). Process as invalid query
 otherwise.
 
 REQ-6.3: The OPCODE field should be 0 (standard query (QUERY)) or 1
 (inverse query (IQUERY)). Process as invalid query otherwise.
 
-REQ-6.4: AA, TC, RD, RA, Z and RCODE fields should be zero. Process as
+REQ-6.4.0: The RD field can be 0 or 1.
+
+REQ-6.4: AA, TC, RA, Z and RCODE fields should be zero. Process as
 invalid query otherwise.
 
 REQ-6.5: The QDCOUNT field is an unsigned 16 bit integer specifying the
