@@ -17,3 +17,7 @@ dsr.tex
 *.ali
 *.o
 dummy/implementation/obj/gnattest/harness/test_runner
+
+# sub3_receive_query specific files
+sub3_receive_query/implementation/obj/
+sub3_receive_query/implementation/gnatinspect.db
