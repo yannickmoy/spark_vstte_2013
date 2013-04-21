@@ -7,4 +7,10 @@ package Util is
                                 return Unsigned_16
    with
      Pre => Offset <= Network_DNS_Query_Range'Last - 1; -- at least two octets
+
+   function Extract_Bits_Of_Octet(Query : Network_DNS_Query;
+                                  Offset : Network_DNS_Query_Range;
+                                  Bit_Shift_Right : Bit_Range;
+                                  Bit_Mask : Unsigned_8)
+                                  return Unsigned_8;
 end;

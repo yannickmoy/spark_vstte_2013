@@ -75,7 +75,7 @@ otherwise.
 REQ-6.3: The OPCODE field should be 0 (standard query (QUERY)) or 1
 (inverse query (IQUERY)). Process as invalid query otherwise.
 
-REQ-6.4: AA, TC, RD, RA, Z and RCDOE fields should be zero. Process as
+REQ-6.4: AA, TC, RD, RA, Z and RCODE fields should be zero. Process as
 invalid query otherwise.
 
 REQ-6.5: The QDCOUNT field is an unsigned 16 bit integer specifying the
