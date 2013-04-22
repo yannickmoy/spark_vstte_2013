@@ -22,8 +22,8 @@ package body Util.Test_Data.Tests is
       Query : Network_DNS_Query;
 
    begin
-      Query(0) := 8;
-      Query(1) := 5;
+      Query(0).Data := 8;
+      Query(1).Data := 5;
 
       AUnit.Assertions.Assert(Extract_Unsigned_16(Query, 0) = 8*256+5,
                               "Check of extracting 2 bytes");
@@ -44,7 +44,7 @@ package body Util.Test_Data.Tests is
       pragma Unreferenced (Gnattest_T);
       Query : Network_DNS_Query;
    begin
-      Query(0) := 2#00101000#;
+      Query(0).Data := 2#00101000#;
 
       AUnit.Assertions.Assert
         (Extract_Bits_Of_Octet(Query           => Query,

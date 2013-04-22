@@ -3,7 +3,7 @@ with Interfaces; use Interfaces;
 
 package Parse is
 
-   type Parse_Result_T (Return_Code : Return_Code_T) is record
+   type Parse_Result_T (Return_Code : Return_Code_T := Invalid_Query) is record
       case Return_Code is
          when OK =>
             Header : Query_Header;
