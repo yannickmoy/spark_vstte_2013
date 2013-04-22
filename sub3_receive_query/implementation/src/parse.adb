@@ -3,18 +3,18 @@ with Util; use Util;
 -- FIXME: GNATprove cannot prove this function?
 package body Parse is
    procedure Parse_Header(Query : Network_DNS_Query;
-                          Header : out Query_Header;
-                          Return_Code : out Return_Code_T) is
+                          Result : out Parse_Result_T) is
       Opcode : Unsigned_8;
       Qdcount : Unsigned_16;
-      Count : Unsigned_16;
+      Count   : Unsigned_16;
+      Header : Query_Header;
    begin
       Header.ID := Extract_Unsigned_16(Query, 0); -- REQ-6.1
 
       -- REQ-6.2
       if Extract_Bits_Of_Octet(Query => Query, Offset => 2,
                                Bit_Shift_Right => 7, Bit_Mask => 1) /= 0 then
-         Return_Code := Invalid_Query;
+         Result := (Return_Code => Invalid_Query);
          return;
       end if;
 
@@ -30,7 +30,7 @@ package body Parse is
          Header.OPCODE := Inverse_Query;
 
       when others =>
-         Return_Code := Invalid_Query;
+         Result := (Return_Code => Invalid_Query);
          return;
       end case;
 
@@ -38,8 +38,8 @@ package body Parse is
       if Extract_Bits_Of_Octet(Query => Query, Offset => 2,
                                Bit_Shift_Right => 0,
                                Bit_Mask => 2#110#) /= 0
-        or Query(3) /= 0 then
-         Return_Code := Invalid_Query;
+        or Query(3).Data /= 0 then
+         Result := (Return_Code => Invalid_Query);
          return;
       end if;
 
@@ -49,21 +49,30 @@ package body Parse is
         and Qdcount <= Unsigned_16(Qdcount_Range'Last) then
          Header.QDCOUNT := Qdcount_Range(Qdcount);
       else
-         Return_Code := Invalid_Query;
+         Result := (Return_Code => Invalid_Query);
          return;
       end if;
 
       -- REQ-6.6
       Count := Extract_Unsigned_16(Query, 6);
-      if Count /= 0 then Return_Code := Invalid_Query; return; end if;
+      if Count /= 0 then
+         Result := (Return_Code => Invalid_Query);
+         return;
+      end if;
 
       Count := Extract_Unsigned_16(Query, 8);
-      if Count /= 0 then Return_Code := Invalid_Query; return; end if;
+      if Count /= 0 then
+         Result := (Return_Code => Invalid_Query);
+         return;
+      end if;
 
       Count := Extract_Unsigned_16(Query, 10);
-      if Count /= 0 then Return_Code := Invalid_Query; return; end if;
+      if Count /= 0 then
+         Result := (Return_Code => Invalid_Query);
+         return;
+      end if;
 
-      Return_Code := OK;
+      Result := (Return_Code => OK, Header => Header);
       return;
    end Parse_Header;
 end;

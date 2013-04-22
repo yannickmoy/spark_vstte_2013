@@ -1,9 +1,18 @@
 with Interfaces; use Interfaces;
+with System;
 
 package Types is
    type Return_Code_T is (OK, Invalid_Query);
 
-   subtype Octet is Unsigned_8; -- FIXME: how to ensure REQ-3?
+   type Octet is record
+      Data : Unsigned_8;
+   end record;
+   for Octet use record
+      Data at 0 range 0 .. 7;
+   end record;
+   for Octet'Size use 8;
+   for Octet'Bit_Order use System.High_Order_First; -- REQ-3
+
    subtype Bit_Range is Natural range 0..7;
 
    type Network_DNS_Query_Range is range 0..512; -- REQ-1.1
